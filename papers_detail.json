@@ -8,7 +8,7 @@
         "长期趋势：2010 年与 2015 年的性能评估质量未见显著改善 [cite: 272]。"
       ],
       "methodology": "基于 22 种缺陷编码（A1-F4），通过双人独立评审方式对 2010 和 2015 年的顶会论文进行量化评估 [cite: 220]。"
-    }
+    },
     {
       "title": "SoK: Towards a Unified Approach to Applied Replicability for Computer Security",
       "summary": "该论文系统性地梳理了 30 年来关于可复现性的研究，提出了“有效性树”（Tree of Validity, ToV）框架，旨在为安全研究提供一套量化且可比较的实验有效性评估标准 [cite: 21, 22, 26]。",
