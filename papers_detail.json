@@ -9,4 +9,14 @@
       ],
       "methodology": "基于 22 种缺陷编码（A1-F4），通过双人独立评审方式对 2010 和 2015 年的顶会论文进行量化评估 [cite: 220]。"
     }
+    {
+      "title": "SoK: Towards a Unified Approach to Applied Replicability for Computer Security",
+      "summary": "该论文系统性地梳理了 30 年来关于可复现性的研究，提出了“有效性树”（Tree of Validity, ToV）框架，旨在为安全研究提供一套量化且可比较的实验有效性评估标准 [cite: 21, 22, 26]。",
+      "key_insights": [
+        "明确区分了计算可复现性（Reproducibility，使用相同代码/数据得到相同结果）与可复制性（Replicability，在不同条件下测试假设的极限并获取一致证据）[cite: 33, 34, 390, 391]。",
+        "安全研究的复现面临独特挑战：威胁模型（Threat Model）的差异可能导致实验失败，且发布攻击载荷或数据集可能引发严重的伦理与现实世界风险（如泄露隐私或被攻击者利用）[cite: 315, 333, 345, 695]。",
+        "即使是获得‘杰出成果奖’（Distinguished Artifact Award）的论文，由于互联网状态的变化或昂贵的硬件需求，完全的原始复现往往也是难以实现的 [cite: 24, 53, 670, 914, 917]。"
+      ],
+      "methodology": "论文通过构建一个完美二叉树结构的 ToV 框架，将实验拆解为五个核心层级：问题（Problem）、领域（Domain）、方法（Method）、数据（Data）和分析（Analysis）[cite: 442, 444]。在该树中，每一条从根到叶的路径代表一次实验执行（Execution），通过比较路径上每一层是‘相同’还是‘不同’，来量化不同研究之间的差异 [cite: 443, 446, 498]。此外，论文引入了 PEC（Potential, Execution, Conclusion）模型，并利用 Spectre 攻击、Entangled Watermarks 防御及 Cookie 检测等案例验证了该框架在描述威胁模型和自适应攻击方面的灵活性 [cite: 458, 532, 565, 621]。"
+    }
   ]
