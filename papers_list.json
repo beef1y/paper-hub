@@ -28,8 +28,8 @@
     },
     {
       "title": "Evaluating Privacy Policies under Modern Privacy Laws At Scale: An LLM-Based Automated Approach",
-      "authors": "NULL",
-      "affiliations": "NULL",
+      "authors": "Qinge Xie Karthik Ramakrishnan Frank Li",
+      "affiliations": "Georgia Institute of Technology",
       "year": 2025,
       "venue": "USENIX Security",
       "category": "Privacy Policy",
@@ -37,8 +37,8 @@
     },
     {
       "title": "GENAIPABENCH: A Benchmark for Generative AI-based Privacy Assistants",
-      "authors": "NULL",
-      "affiliations": "NULL",
+      "authors": "Aamir Hamid1,*, Hemanth Reddy Samidi1, Tim Finin1, Primal Pappachan2,†, Roberto Yus1",
+      "affiliations": "1University of Maryland, Baltimore County, 2Portland State University",
       "year": 2023,
       "venue": "arXiv",
       "category": "Privacy Policy",
