@@ -58,12 +58,29 @@
                     <div class="text-[10px] font-bold text-slate-200 mb-6 tracking-widest" x-text="date"></div>
                     <div class="grid gap-6">
                         <template x-for="paper in group" :key="paper.title">
-                            <div @click="openDrawer(paper.title)" :class="activeTab === 'Dataset' ? 'hover:border-dataset' : 'hover:border-dynamic'" class="group border border-slate-50 rounded-ios p-7 transition-all cursor-pointer bg-white hover:shadow-sm">
+                            <div @click="openDrawer(paper.title)" 
+                                 :class="activeTab === 'Dataset' ? 'hover:border-dataset' : activeTab === 'Dynamic Secrets' ? 'hover:border-dynamic' : 'hover:border-slate-200'"
+                                 class="group border border-slate-50 rounded-ios p-7 transition-all cursor-pointer bg-white hover:shadow-sm">
+                                
                                 <div class="flex items-center gap-3 mb-4">
-                                    <span :style="`background-color: ${tabs.find(t => t.name === activeTab).color}`" class="text-[10px] font-bold px-3 py-0.5 rounded-full" x-text="paper.year"></span>
+                                    <span :style="`background-color: ${tabs.find(t => t.name === activeTab).color}`"
+                                          class="text-[10px] font-bold px-3 py-0.5 rounded-full" 
+                                          x-text="paper.year"></span>
                                     <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest" x-text="paper.venue"></span>
                                 </div>
-                                <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-slate-900" x-text="paper.title"></h3>
+                        
+                                <h3 class="text-lg font-bold text-slate-800 leading-tight mb-3 group-hover:text-slate-900" x-text="paper.title"></h3>
+                        
+                                <div class="space-y-1">
+                                    <p class="text-[11px] font-semibold text-slate-500 flex items-center">
+                                        <span class="mr-2">👤</span>
+                                        <span x-text="paper.authors"></span>
+                                    </p>
+                                    <p class="text-[10px] text-slate-400 italic flex items-center">
+                                        <span class="mr-2">🏛️</span>
+                                        <span x-text="paper.affiliations"></span>
+                                    </p>
+                                </div>
                             </div>
                         </template>
                     </div>

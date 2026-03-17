@@ -1,6 +1,8 @@
 [
     {
       "title": "SoK: Benchmarking Flaws in Systems Security",
+      "authors": "NULL",
+      "affiliations": "null",
       "year": 2019,
       "venue": "EuroS&P",
       "category": "Dataset",
@@ -8,6 +10,8 @@
     },
     {
       "title": "SoK: Towards a Unified Approach to Applied Replicability for Computer Security",
+      "authors": "NULL.",
+      "affiliations": "NULL",
       "year": 2025,
       "venue": "USENIX Security",
       "category": "Dataset",
@@ -15,6 +19,8 @@
     },
     {
       "title": "Data to Infinity and Beyond: Examining Data Sharing and Reuse Practices in the Computer Security Community",
+      "authors": "NULL",
+      "affiliations": "NULL",
       "year": 2025,
       "venue": "IEEE S&P",
       "category": "Dataset",
@@ -22,8 +28,19 @@
     },
     {
       "title": "Evaluating Privacy Policies under Modern Privacy Laws At Scale: An LLM-Based Automated Approach",
+      "authors": "NULL",
+      "affiliations": "NULL",
       "year": 2025,
       "venue": "USENIX Security",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-17"
+    },
+    {
+      "title": "GENAIPABENCH: A Benchmark for Generative AI-based Privacy Assistants",
+      "authors": "NULL",
+      "affiliations": "NULL",
+      "year": 2023,
+      "venue": "arXiv",
       "category": "Privacy Policy",
       "date_read": "2026-03-17"
     }
