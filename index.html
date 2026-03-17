@@ -19,7 +19,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { dataset: '#FCE5D6', dynamic: '#DEEAF7', other: '#F1F5F9', iosDark: '#0F172A', iosText: '#475569' },
+                    colors: { dataset: '#FCE5D6', dynamic: '#DEEAF7', privacy: '#F1F5F9', iosDark: '#0F172A', iosText: '#475569' },
                     borderRadius: { 'ios': '28px' }
                 }
             }
@@ -110,7 +110,7 @@
         function paperApp() {
             return {
                 papers: [], details: [], activeTab: 'Dataset', isDrawerOpen: false, selectedTitle: null,
-                tabs: [{ name: 'Dataset', color: '#FCE5D6' }, { name: 'Dynamic Secrets', color: '#DEEAF7' }, { name: 'Other', color: '#F1F5F9' }],
+                tabs: [{ name: 'Dataset', color: '#FCE5D6' }, { name: 'Dynamic Secrets', color: '#DEEAF7' }, { name: 'Privacy Policy', color: '#F1F5F9' }],
                 async init() {
                     const t = Date.now();
                     this.papers = await (await fetch(`./papers_list.json?t=${t}`)).json();

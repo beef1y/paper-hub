@@ -19,5 +19,12 @@
       "venue": "IEEE S&P",
       "category": "Dataset",
       "date_read": "2026-03-16"
+    },
+    {
+      "title": "Evaluating Privacy Policies under Modern Privacy Laws At Scale: An LLM-Based Automated Approach",
+      "year": 2025,
+      "venue": "USENIX Security",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-17"
     }
   ]
