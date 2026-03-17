@@ -2,27 +2,24 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhD Paper Hub - Professional Edition</title>
+    <title>PhD Paper Hub - Markdown Enabled</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { font-family: 'Inter', -apple-system, sans-serif; background-color: #FFFFFF; }
+        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
         [x-cloak] { display: none !important; }
-        .ios-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* 针对 Markdown 列表的样式补丁 */
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .prose strong { font-weight: 700; color: #0F172A; }
     </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        dataset: '#FCE5D6',
-                        dynamic: '#DEEAF7',
-                        other: '#F1F5F9',
-                        iosDark: '#0F172A',
-                        iosText: '#475569',
-                    },
+                    colors: { dataset: '#FCE5D6', dynamic: '#DEEAF7', other: '#F1F5F9', iosDark: '#0F172A', iosText: '#475569' },
                     borderRadius: { 'ios': '28px' }
                 }
             }
@@ -33,53 +30,40 @@
 
     <aside class="w-64 border-r border-slate-50 flex flex-col p-8 bg-white z-20">
         <div class="mb-12 font-bold text-xl tracking-tight">Research Hub</div>
-        
         <nav class="space-y-6 flex-1">
             <template x-for="tab in tabs" :key="tab.name">
                 <div @click="activeTab = tab.name" 
                      :class="activeTab === tab.name ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600'"
-                     class="flex items-center cursor-pointer ios-transition group">
-                    <div :style="`background-color: ${tab.color}`" 
-                         :class="activeTab === tab.name ? 'scale-100' : 'bg-transparent'"
-                         class="w-2 h-2 rounded-full mr-3 ios-transition"></div>
+                     class="flex items-center cursor-pointer transition-all group">
+                    <div :style="`background-color: ${tab.color}`" class="w-2 h-2 rounded-full mr-3"></div>
                     <span class="flex-1 font-semibold text-sm" x-text="tab.name"></span>
-                    <span x-show="activeTab === tab.name" 
-                          x-text="getTabCount(tab.name)"
-                          :style="`background-color: ${tab.color}`"
-                          class="text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                    <span x-show="activeTab === tab.name" x-text="getTabCount(tab.name)" :style="`background-color: ${tab.color}`" class="text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
                 </div>
             </template>
         </nav>
-
         <div class="pt-8 border-t border-slate-50">
-            <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1">Total Library</p>
+            <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1">Total</p>
             <p class="text-2xl font-bold" x-text="papers.length"></p>
         </div>
     </aside>
 
-    <main class="flex-1 overflow-y-auto p-12 relative bg-white">
+    <main class="flex-1 overflow-y-auto p-12 bg-white">
         <div class="max-w-4xl mx-auto">
             <div class="flex items-center gap-6 mb-12">
-                <h2 class="text-[11px] font-black text-slate-300 tracking-[3px] uppercase" 
-                    x-text="activeTab.toUpperCase() + ' / TIMELINE'"></h2>
+                <h2 class="text-[11px] font-black text-slate-300 tracking-[3px] uppercase" x-text="activeTab.toUpperCase() + ' / TIMELINE'"></h2>
                 <div class="h-px bg-slate-50 flex-1"></div>
             </div>
-
             <template x-for="(group, date) in groupedPapers" :key="date">
                 <div class="mb-12">
                     <div class="text-[10px] font-bold text-slate-200 mb-6 tracking-widest" x-text="date"></div>
                     <div class="grid gap-6">
                         <template x-for="paper in group" :key="paper.title">
-                            <div @click="openDrawer(paper.title)"
-                                 :class="activeTab === 'Dataset' ? 'hover:border-dataset' : activeTab === 'Dynamic Secrets' ? 'hover:border-dynamic' : 'hover:border-slate-200'"
-                                 class="group border border-slate-50 rounded-ios p-7 transition-all cursor-pointer bg-white hover:shadow-sm">
+                            <div @click="openDrawer(paper.title)" :class="activeTab === 'Dataset' ? 'hover:border-dataset' : 'hover:border-dynamic'" class="group border border-slate-50 rounded-ios p-7 transition-all cursor-pointer bg-white hover:shadow-sm">
                                 <div class="flex items-center gap-3 mb-4">
-                                    <span :style="`background-color: ${tabs.find(t => t.name === activeTab).color}`"
-                                          class="text-[10px] font-bold px-3 py-0.5 rounded-full" 
-                                          x-text="paper.year"></span>
+                                    <span :style="`background-color: ${tabs.find(t => t.name === activeTab).color}`" class="text-[10px] font-bold px-3 py-0.5 rounded-full" x-text="paper.year"></span>
                                     <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest" x-text="paper.venue"></span>
                                 </div>
-                                <h3 class="text-lg font-bold text-slate-800 leading-tight mb-2 group-hover:text-slate-900" x-text="paper.title"></h3>
+                                <h3 class="text-lg font-bold text-slate-800 leading-tight group-hover:text-slate-900" x-text="paper.title"></h3>
                             </div>
                         </template>
                     </div>
@@ -89,47 +73,33 @@
     </main>
 
     <div x-show="isDrawerOpen" x-cloak class="fixed inset-0 z-50 flex justify-end">
-        <div x-show="isDrawerOpen" 
-             x-transition:enter="transition opacity duration-300"
-             x-transition:leave="transition opacity duration-200"
-             @click="isDrawerOpen = false" class="absolute inset-0 bg-slate-900/5 backdrop-blur-sm"></div>
-        
-        <div x-show="isDrawerOpen" 
-             x-transition:enter="transition transform duration-300"
-             x-transition:enter-start="translate-x-full"
-             x-transition:leave="transition transform duration-200"
-             x-transition:leave-end="translate-x-full"
-             class="relative w-[520px] bg-white h-full shadow-2xl p-12 overflow-y-auto border-l border-slate-50">
-            
+        <div x-show="isDrawerOpen" x-transition.opacity @click="isDrawerOpen = false" class="absolute inset-0 bg-slate-900/5 backdrop-blur-sm"></div>
+        <div x-show="isDrawerOpen" x-transition:enter="transition transform duration-300" x-transition:enter-start="translate-x-full" class="relative w-[520px] bg-white h-full shadow-2xl p-12 overflow-y-auto border-l border-slate-50">
             <button @click="isDrawerOpen = false" class="absolute top-8 right-8 text-slate-300 hover:text-slate-900 text-xl">✕</button>
-
             <template x-if="activeDetail">
-                <article class="mt-12 space-y-12">
+                <article class="mt-12 space-y-12 prose">
                     <header>
                         <div class="inline-block px-2 py-0.5 rounded text-[10px] font-bold mb-4 uppercase tracking-widest text-slate-400 border border-slate-100" x-text="activeTab"></div>
                         <h1 class="text-3xl font-bold text-iosDark leading-tight" x-text="activeDetail.title"></h1>
                     </header>
-
                     <section>
                         <h4 class="text-[10px] font-black text-iosDark uppercase tracking-[3px] mb-4 border-b border-slate-50 pb-2">Summary</h4>
-                        <p class="text-sm text-iosText leading-relaxed font-medium italic" x-text="activeDetail.summary"></p>
+                        <div class="text-sm text-iosText leading-relaxed" x-html="md(activeDetail.summary)"></div>
                     </section>
-
                     <section>
                         <h4 class="text-[10px] font-black text-iosDark uppercase tracking-[3px] mb-4 border-b border-slate-50 pb-2">Key Insights</h4>
-                        <div class="space-y-6">
-                            <template x-for="(insight, index) in activeDetail.key_insights" :key="index">
-                                <div class="flex gap-4">
+                        <div class="space-y-4">
+                            <template x-for="insight in activeDetail.key_insights">
+                                <div class="flex gap-4 p-4 bg-slate-50/50 rounded-2xl">
                                     <div class="w-1 h-1 rounded-full bg-slate-200 mt-2"></div>
-                                    <p class="text-[13px] text-iosText leading-relaxed" x-text="insight"></p>
+                                    <div class="text-[13px] text-iosText leading-relaxed" x-html="md(insight)"></div>
                                 </div>
                             </template>
                         </div>
                     </section>
-
                     <section class="bg-slate-50 p-6 rounded-ios border border-slate-100">
                         <h4 class="text-[10px] font-black text-iosDark uppercase tracking-[2px] mb-3">Methodology</h4>
-                        <p class="text-[13px] text-slate-500 leading-loose" x-text="activeDetail.methodology"></p>
+                        <div class="text-[13px] text-slate-500 leading-loose" x-html="md(activeDetail.methodology)"></div>
                     </section>
                 </article>
             </template>
@@ -139,50 +109,25 @@
     <script>
         function paperApp() {
             return {
-                papers: [],
-                details: [],
-                activeTab: 'Dataset',
-                isDrawerOpen: false,
-                selectedTitle: null,
-                tabs: [
-                    { name: 'Dataset', color: '#FCE5D6' },
-                    { name: 'Dynamic Secrets', color: '#DEEAF7' },
-                    { name: 'Other', color: '#F1F5F9' }
-                ],
-
+                papers: [], details: [], activeTab: 'Dataset', isDrawerOpen: false, selectedTitle: null,
+                tabs: [{ name: 'Dataset', color: '#FCE5D6' }, { name: 'Dynamic Secrets', color: '#DEEAF7' }, { name: 'Other', color: '#F1F5F9' }],
                 async init() {
-                    try {
-                        const listRes = await fetch('./papers_list.json');
-                        const detailRes = await fetch('./papers_detail.json');
-                        this.papers = await listRes.json();
-                        this.details = await detailRes.json();
-                    } catch (e) {
-                        console.error("加载失败：请使用本地服务器运行（如 python -m http.server）");
-                    }
+                    const t = Date.now();
+                    this.papers = await (await fetch(`./papers_list.json?t=${t}`)).json();
+                    this.details = await (await fetch(`./papers_detail.json?t=${t}`)).json();
                 },
-
+                // Markdown 渲染辅助函数
+                md(content) {
+                    return content ? marked.parse(content) : '';
+                },
                 get groupedPapers() {
-                    const filtered = this.papers.filter(p => p.category === this.activeTab);
-                    return filtered.reduce((groups, paper) => {
-                        const date = paper.date_read;
-                        if (!groups[date]) groups[date] = [];
-                        groups[date].push(paper);
-                        return groups;
+                    return this.papers.filter(p => p.category === this.activeTab).reduce((g, p) => {
+                        (g[p.date_read] = g[p.date_read] || []).push(p); return g;
                     }, {});
                 },
-
-                get activeDetail() {
-                    return this.details.find(d => d.title === this.selectedTitle);
-                },
-
-                getTabCount(tabName) {
-                    return this.papers.filter(p => p.category === tabName).length;
-                },
-
-                openDrawer(title) {
-                    this.selectedTitle = title;
-                    this.isDrawerOpen = true;
-                }
+                get activeDetail() { return this.details.find(d => d.title === this.selectedTitle); },
+                getTabCount(n) { return this.papers.filter(p => p.category === n).length; },
+                openDrawer(t) { this.selectedTitle = t; this.isDrawerOpen = true; }
             }
         }
     </script>
