@@ -2,7 +2,8 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>PhD Paper Hub - Markdown Enabled</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Paper Hub - Professional Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -10,7 +11,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; }
         [x-cloak] { display: none !important; }
-        /* 针对 Markdown 列表的样式补丁 */
         .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
         .prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
         .prose strong { font-weight: 700; color: #0F172A; }
@@ -19,7 +19,13 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { dataset: '#FCE5D6', dynamic: '#DEEAF7', privacy: '#F1F5F9', iosDark: '#0F172A', iosText: '#475569' },
+                    colors: { 
+                        dataset: '#FCE5D6', 
+                        dynamic: '#DEEAF7', 
+                        other: '#F1F5F9', 
+                        iosDark: '#0F172A', 
+                        iosText: '#475569' 
+                    },
                     borderRadius: { 'ios': '28px' }
                 }
             }
@@ -42,7 +48,7 @@
             </template>
         </nav>
         <div class="pt-8 border-t border-slate-50">
-            <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1">Total</p>
+            <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1">Total Collection</p>
             <p class="text-2xl font-bold" x-text="papers.length"></p>
         </div>
     </aside>
@@ -53,6 +59,7 @@
                 <h2 class="text-[11px] font-black text-slate-300 tracking-[3px] uppercase" x-text="activeTab.toUpperCase() + ' / TIMELINE'"></h2>
                 <div class="h-px bg-slate-50 flex-1"></div>
             </div>
+
             <template x-for="(group, date) in groupedPapers" :key="date">
                 <div class="mb-12">
                     <div class="text-[10px] font-bold text-slate-200 mb-6 tracking-widest" x-text="date"></div>
@@ -63,22 +70,22 @@
                                  class="group border border-slate-50 rounded-ios p-7 transition-all cursor-pointer bg-white hover:shadow-sm">
                                 
                                 <div class="flex items-center gap-3 mb-4">
-                                    <span :style="`background-color: ${tabs.find(t => t.name === activeTab).color}`"
+                                    <span :style="`background-color: ${tabs.find(t => t.name === activeTab)?.color || '#F1F5F9'}`"
                                           class="text-[10px] font-bold px-3 py-0.5 rounded-full" 
                                           x-text="paper.year"></span>
                                     <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest" x-text="paper.venue"></span>
                                 </div>
                         
-                                <h3 class="text-lg font-bold text-slate-800 leading-tight mb-3 group-hover:text-slate-900" x-text="paper.title"></h3>
+                                <h3 class="text-lg font-bold text-slate-800 leading-tight mb-4 group-hover:text-slate-900" x-text="paper.title"></h3>
                         
-                                <div class="space-y-1">
+                                <div class="space-y-1.5 border-t border-slate-50 pt-4">
                                     <p class="text-[11px] font-semibold text-slate-500 flex items-center">
-                                        <span class="mr-2">👤</span>
-                                        <span x-text="paper.authors"></span>
+                                        <span class="mr-2 opacity-50">👤</span>
+                                        <span x-text="paper.authors || 'Unknown Authors'"></span>
                                     </p>
                                     <p class="text-[10px] text-slate-400 italic flex items-center">
-                                        <span class="mr-2">🏛️</span>
-                                        <span x-text="paper.affiliations"></span>
+                                        <span class="mr-2 opacity-50">🏛️</span>
+                                        <span x-text="paper.affiliations || 'No Affiliation Provided'"></span>
                                     </p>
                                 </div>
                             </div>
@@ -94,7 +101,7 @@
         <div x-show="isDrawerOpen" x-transition:enter="transition transform duration-300" x-transition:enter-start="translate-x-full" class="relative w-[520px] bg-white h-full shadow-2xl p-12 overflow-y-auto border-l border-slate-50">
             <button @click="isDrawerOpen = false" class="absolute top-8 right-8 text-slate-300 hover:text-slate-900 text-xl">✕</button>
             <template x-if="activeDetail">
-                <article class="mt-12 space-y-12 prose">
+                <article class="mt-12 space-y-12 prose max-w-none">
                     <header>
                         <div class="inline-block px-2 py-0.5 rounded text-[10px] font-bold mb-4 uppercase tracking-widest text-slate-400 border border-slate-100" x-text="activeTab"></div>
                         <h1 class="text-3xl font-bold text-iosDark leading-tight" x-text="activeDetail.title"></h1>
@@ -127,18 +134,34 @@
         function paperApp() {
             return {
                 papers: [], details: [], activeTab: 'Dataset', isDrawerOpen: false, selectedTitle: null,
-                tabs: [{ name: 'Dataset', color: '#FCE5D6' }, { name: 'Dynamic Secrets', color: '#DEEAF7' }, { name: 'Privacy Policy', color: '#F1F5F9' }],
+                tabs: [
+                    { name: 'Dataset', color: '#FCE5D6' }, 
+                    { name: 'Dynamic Secrets', color: '#DEEAF7' }, 
+                    { name: 'Other', color: '#F1F5F9' }
+                ],
                 async init() {
                     const t = Date.now();
-                    this.papers = await (await fetch(`./papers_list.json?t=${t}`)).json();
-                    this.details = await (await fetch(`./papers_detail.json?t=${t}`)).json();
+                    try {
+                        // 强制不使用缓存：添加时间戳并设置 cache: 'no-store'
+                        const fetchOptions = { cache: 'no-store' };
+                        const [listRes, detailRes] = await Promise.all([
+                            fetch(`./papers_list.json?t=${t}`, fetchOptions),
+                            fetch(`./papers_detail.json?t=${t}`, fetchOptions)
+                        ]);
+                        this.papers = await listRes.json();
+                        this.details = await detailRes.json();
+                    } catch (e) {
+                        console.error("Data fetch failed. Ensure local server is running.");
+                    }
                 },
-                // Markdown 渲染辅助函数
                 md(content) {
                     return content ? marked.parse(content) : '';
                 },
                 get groupedPapers() {
-                    return this.papers.filter(p => p.category === this.activeTab).reduce((g, p) => {
+                    // 按日期排序逻辑：最新的日期排在最前
+                    const filtered = this.papers.filter(p => p.category === this.activeTab);
+                    const sorted = [...filtered].sort((a, b) => new Date(b.date_read) - new Date(a.date_read));
+                    return sorted.reduce((g, p) => {
                         (g[p.date_read] = g[p.date_read] || []).push(p); return g;
                     }, {});
                 },
