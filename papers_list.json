@@ -43,5 +43,15 @@
       "venue": "arXiv",
       "category": "Privacy Policy",
       "date_read": "2026-03-17"
+    },
+    {
+      "title": "Actions speak louder than words: Entity-Sensitive privacy policy and data flow analysis with PoliCheck",
+      "authors": "Benjamin Andow, Samin Yaseer Mahmud, Justin Whitaker, William Enck, Bradley Reaves, Kapil Singh, Serge Egelman",
+      "affiliations": "North Carolina State University, IBM T.J. Watson Research Center, University of California, Berkeley, International Computer Science Institute (ICSI)",
+      "year": 2020,
+      "venue": "USENIX Security",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-17"
     }
   ]
+  
