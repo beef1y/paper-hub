@@ -54,9 +54,9 @@
       "date_read": "2026-03-17"
     },
     {
-      "title": "PoliCheck: Automated Detection of Privacy Policy Violations in Mobile Apps",
-      "authors": "Shidong Cui, Michael Backes, Yang Zhang, Mathias Humbert",
-      "affiliations": "CISPA Helmholtz Center for Information Security, University of Lausanne",
+      "title": "PoliGraPh: Automated Privacy Policy Analysis using Knowledge Graphs",
+      "authors": "Hao Cui, Rahmadi Trimananda, Athina Markopoulou, Scott Jordan",
+      "affiliations": "University of California, Irvine",
       "year": 2023,
       "venue": "USENIX Security",
       "category": "Privacy Policy",
