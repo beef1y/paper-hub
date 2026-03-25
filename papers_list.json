@@ -88,6 +88,15 @@
       "venue": "USENIX Security",
       "category": "Privacy Policy",
       "date_read": "2026-03-25"
+    },
+    {
+      "title": "PolicyLint: Investigating Internal Privacy Policy Contradictions on Google Play",
+      "authors": "Benjamin Andow, Samin Yaseer Mahmud, Wenyu Wang, Justin Whitaker, William Enck, Bradley Reaves, Kapil Singh, Tao Xie",
+      "affiliations": "North Carolina State University, University of Illinois at Urbana-Champaign, IBM T.J. Watson Research Center",
+      "year": 2019,
+      "venue": "USENIX Security",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-25"
     }
   ]
   
