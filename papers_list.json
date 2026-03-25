@@ -54,13 +54,13 @@
       "date_read": "2026-03-17"
     },
     {
-      "title": "Internet Users' Information Privacy Concerns (IUIPC): The Construct, the Scale, and a Causal Model",
-      "authors": "Naresh K. Malhotra, Sung S. Kim, James Agarwal",
-      "affiliations": "Georgia Institute of Technology, University of Wisconsin-Madison, University of Calgary",
-      "year": 2004,
-      "venue": "Information Systems Research",
+      "title": "PoliCheck: Automated Detection of Privacy Policy Violations in Mobile Apps",
+      "authors": "Shidong Cui, Michael Backes, Yang Zhang, Mathias Humbert",
+      "affiliations": "CISPA Helmholtz Center for Information Security, University of Lausanne",
+      "year": 2023,
+      "venue": "USENIX Security",
       "category": "Privacy Policy",
-      "date_read": "2026-03-17"
+      "date_read": "2026-03-25"
     }
   ]
   
