@@ -61,6 +61,33 @@
       "venue": "USENIX Security",
       "category": "Privacy Policy",
       "date_read": "2026-03-25"
+    },
+    {
+      "title": "Polisis: Automated Analysis and Presentation of Privacy Policies Using Deep Learning",
+      "authors": "Hamza Harkous, Kassem Fawaz, Rémi Lebret, Florian Schaub, Kang G. Shin, Karl Aberer",
+      "affiliations": "École Polytechnique Fédérale de Lausanne (EPFL), University of Wisconsin-Madison, University of Michigan",
+      "year": 2018,
+      "venue": "USENIX Security",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-25"
+    },
+    {
+      "title": "Consistency Analysis of Data-Usage Purposes in Mobile Apps",
+      "authors": "Duc Bui, Yuan Yao, Kang G. Shin, Jong-Min Choi, Junbum Shin",
+      "affiliations": "University of Michigan, Samsung Research, CryptoLab",
+      "year": 2021,
+      "venue": "CCS '21",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-25"
+    },
+    {
+      "title": "OVRSEEN: Auditing Network Traffic and Privacy Policies in Oculus VR",
+      "authors": "Rahmadi Trimananda, Hieu Le, Hao Cui, Janice Tran Ho, Anastasia Shuba, Athina Markopoulou",
+      "affiliations": "University of California, Irvine, Independent Researcher",
+      "year": 2022,
+      "venue": "USENIX Security",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-25"
     }
   ]
   
