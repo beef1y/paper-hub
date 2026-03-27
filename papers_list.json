@@ -115,6 +115,42 @@
       "venue": "Computers & Security",
       "category": "Privacy Policy",
       "date_read": "2026-03-26"
+    },
+    {
+      "title": "Privacy as Contextual Integrity",
+      "authors": "Helen Nissenbaum",
+      "affiliations": "Department of Culture & Communication, New York University",
+      "year": 2004,
+      "venue": "Wash. L. Rev.",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-27"
+    },
+    {
+      "title": "A Taxonomy of Privacy",
+      "authors": "Daniel J. Solove",
+      "affiliations": "George Washington University Law School",
+      "year": 2006,
+      "venue": "University of Pennsylvania Law Review",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-27"
+    },
+    {
+      "title": "The Creation and Analysis of a Website Privacy Policy Corpus",
+      "authors": "Shomir Wilson, Florian Schaub, Aswarth Abhilash Dara, Frederick Liu, Sushain Cherivirala, Pedro Giovanni Leon, Mads Schaarup Andersen, Sebastian Zimmeck, Kanthashree Mysore Sathyendra, N. Cameron Russell, Thomas B. Norton, Eduard Hovy, Joel Reidenberg, Norman Sadeh",
+      "affiliations": "Carnegie Mellon University, Stanford University, Columbia University, Fordham University",
+      "year": 2016,
+      "venue": "ACL",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-27"
+    },
+    {
+      "title": "NIST Privacy Framework: A Tool for Improving Privacy through Enterprise Risk Management, Version 1.0",
+      "authors": "National Institute of Standards and Technology (NIST)",
+      "affiliations": "U.S. Department of Commerce",
+      "year": 2020,
+      "venue": "NIST",
+      "category": "Privacy Policy",
+      "date_read": "2026-03-27"
     }
   ]
   
